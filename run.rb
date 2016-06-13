@@ -17,7 +17,8 @@ def convert()
   for i in 0..128*128-1
     x = i%128
     y = (i/128).floor()
-    puts $plz_convert_me[x,y]
+    val = $plz_convert_me[x,y]
+    puts ChunkyPNG::Color.r(val)
   end
 end
 
