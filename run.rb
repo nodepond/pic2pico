@@ -79,5 +79,9 @@ if abort.length > 0
   puts 'we abort!'
 else
   convert()
-  puts $the_converted_me
+  output = "["
+  for val in $the_converted_me
+    output += val+','
+  end
+    puts output
 end
