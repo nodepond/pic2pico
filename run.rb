@@ -81,7 +81,9 @@ else
   convert()
   output = "["
   for val in $the_converted_me
-    output += val+','
+    output += String(val)+','
   end
-    puts output
+  output = output.chop
+  output << "]"
+  puts output
 end
