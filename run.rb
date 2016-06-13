@@ -1,3 +1,7 @@
+# pic2pico. converts pico-8 palette ready .png images to native p8-format
+# (not sprites), that you can load images with code.
+# 2016, m.wisniowski, nodepond.com
+
 require 'chunky_png'
 
 abort=""
