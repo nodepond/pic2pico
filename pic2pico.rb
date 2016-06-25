@@ -2,9 +2,23 @@
 # (not sprites), that you can load images with code.
 # 2016, m.wisniowski, nodepond.com
 
-require 'chunky_png'
+#!/usr/bin/env ruby
+filename='pic2pico-test.png'
+ARGV.each do |a|
+  filename=a
+end
 
+require 'chunky_png'
 abort=''
+
+$plz_convert_me = ChunkyPNG::Image.from_file(filename)
+$the_converted_me = []
+
+if $plz_convert_me.width != 128 || $plz_convert_me.height != 128
+  abort = 'Sorry, currently only support for 128x128 pixel images.'
+  puts abort
+end
+
 
 pico8_loader = 'local img="%STRING-SEQUENCE%"
 
@@ -40,14 +54,6 @@ function	convert_hex2num(value)
 end
 
 draw_img(img)'
-
-$plz_convert_me = ChunkyPNG::Image.from_file('pic2pico-test.png')
-$the_converted_me = []
-
-if $plz_convert_me.width != 128 || $plz_convert_me.height != 128
-  abort = 'Sorry, currently only support for 128x128 pixel images.'
-  puts abort
-end
 
 def convert()
   for i in 0..(128*128)-1
