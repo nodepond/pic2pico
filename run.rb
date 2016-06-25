@@ -50,9 +50,10 @@ if $plz_convert_me.width != 128 || $plz_convert_me.height != 128
 end
 
 def convert()
-  for i in 0..128*128-1
+  for i in 0..(128*128)-1
     x = i%128
     y = (i/128).floor()
+
     val = $plz_convert_me[x,y]
     if ChunkyPNG::Color.r(val) == 0 && ChunkyPNG::Color.g(val) == 0 && ChunkyPNG::Color.b(val) == 0
       # index 0 - Black
@@ -118,9 +119,8 @@ else
   for val in $the_converted_me
    img_data += String(val)+''
   end
-  img_data = img_data.chop
-  puts img_data
+  # puts img_data
 end
 
-puts '--copy and paste this into pico8'
+puts '-- copy and paste this into pico8'
 puts pico8_loader.sub!('%STRING-SEQUENCE%', img_data)
