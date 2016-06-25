@@ -9,12 +9,11 @@ abort=''
 pico8_loader = 'local img="%STRING-SEQUENCE%"
 
 function draw_img(data)
-rectfill(0, 0, 1, 128, 7)
-  for i=0,#data do
-    local chr=sub(data,i,i)
+  for i=0,#data+1 do
+    local chr=sub(data,i+1,i+1)
     pset(i%128,
     	flr(i/128),
-    	convert_hex2num(chr))
+	   	convert_hex2num(chr))
   end
 end
 
@@ -40,8 +39,7 @@ function	convert_hex2num(value)
 	return str2hex_table[value]
 end
 
-draw_img(img)
-'
+draw_img(img)'
 
 $plz_convert_me = ChunkyPNG::Image.from_file('pic2pico-test.png')
 $the_converted_me = []
