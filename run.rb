@@ -6,7 +6,7 @@ require 'chunky_png'
 
 abort=''
 
-pico8_loader = 'local img=""
+pico8_loader = 'local img="%STRING-SEQUENCE%"
 
 function draw_img(data)
 rectfill(0, 0, 1, 128, 7)
@@ -116,11 +116,13 @@ if abort.length > 0
   puts 'we abort!'
 else
   convert()
-  output = '"'
+  img_data = ''
   for val in $the_converted_me
-   output += String(val)+''
+   img_data += String(val)+''
   end
-  output = output.chop
-  output << '"'
-  puts output
+  img_data = img_data.chop
+  puts img_data
 end
+
+puts '--copy and paste this into pico8'
+puts pico8_loader.sub!('%STRING-SEQUENCE%', img_data)
