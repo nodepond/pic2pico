@@ -4,9 +4,46 @@
 
 require 'chunky_png'
 
-abort=""
+abort=''
 
-$plz_convert_me = ChunkyPNG::Image.from_file('pic2pico-test2.png')
+pico8_loader = 'local img=""
+
+function draw_img(data)
+rectfill(0, 0, 1, 128, 7)
+  for i=0,#data do
+    local chr=sub(data,i,i)
+    pset(i%128,
+    	flr(i/128),
+    	convert_hex2num(chr))
+  end
+end
+
+local str2hex_table={}
+str2hex_table["0"]=0
+str2hex_table["1"]=1
+str2hex_table["2"]=2
+str2hex_table["3"]=3
+str2hex_table["4"]=4
+str2hex_table["5"]=5
+str2hex_table["6"]=6
+str2hex_table["7"]=7
+str2hex_table["8"]=8
+str2hex_table["9"]=9
+str2hex_table["a"]=10
+str2hex_table["b"]=11
+str2hex_table["c"]=12
+str2hex_table["d"]=13
+str2hex_table["e"]=14
+str2hex_table["f"]=15
+
+function	convert_hex2num(value)
+	return str2hex_table[value]
+end
+
+draw_img(img)
+'
+
+$plz_convert_me = ChunkyPNG::Image.from_file('pic2pico-test.png')
 $the_converted_me = []
 
 if $plz_convert_me.width != 128 || $plz_convert_me.height != 128
