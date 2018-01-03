@@ -55,58 +55,70 @@ end
 
 draw_img(img)'
 
+def is_color_near?(sr, sg, sb, tr, tg, tb, tolerance)
+  isNear = false
+  if sr.between?(tr-tolerance/2, tr+tolerance/2) && 
+    sg.between?(tg-tolerance/2, tg+tolerance/2) &&
+    sb.between?(tb-tolerance/2, tb+tolerance/2) then
+    isNear = true
+  end
+  return isNear
+end
+
 def convert()
   for i in 0..(128*128)-1
     x = i%128
     y = (i/128).floor()
 
+    colorTolerance = 15
+
     val = $plz_convert_me[x,y]
-    if ChunkyPNG::Color.r(val) == 0 && ChunkyPNG::Color.g(val) == 0 && ChunkyPNG::Color.b(val) == 0
+    if is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 0, 0, 0, colorTolerance)
       # index 0 - Black
       $the_converted_me << "0"
-    elsif ChunkyPNG::Color.r(val) == 29 && ChunkyPNG::Color.g(val) == 43 && ChunkyPNG::Color.b(val) == 83
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 29, 43, 83, colorTolerance)
       # index 1 - Dark-blue
       $the_converted_me << "1"
-    elsif ChunkyPNG::Color.r(val) == 126 && ChunkyPNG::Color.g(val) == 37 && ChunkyPNG::Color.b(val) == 83
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 126, 37, 83, colorTolerance)
       # index 2 - Dark-purple
       $the_converted_me << "2"
-    elsif ChunkyPNG::Color.r(val) == 0 && ChunkyPNG::Color.g(val) == 136 && ChunkyPNG::Color.b(val) == 81
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 0, 136, 81, colorTolerance)
       # index 3 - Dark-green
       $the_converted_me << "3"
-    elsif ChunkyPNG::Color.r(val) == 171 && ChunkyPNG::Color.g(val) == 82 && ChunkyPNG::Color.b(val) == 54
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 171, 82, 54, colorTolerance)
       # index 4 - Brown
       $the_converted_me << "4"
-    elsif ChunkyPNG::Color.r(val) == 95 && ChunkyPNG::Color.g(val) == 87 && ChunkyPNG::Color.b(val) == 79
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 95, 87, 79, colorTolerance)
       # index 5 - Dark-gray
       $the_converted_me << "5"
-    elsif ChunkyPNG::Color.r(val) == 194 && ChunkyPNG::Color.g(val) == 195 && ChunkyPNG::Color.b(val) == 199
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 194, 195, 199, colorTolerance)
       # index 6 - Light-gray
       $the_converted_me << "6"
-    elsif ChunkyPNG::Color.r(val) == 255 && ChunkyPNG::Color.g(val) == 241 && ChunkyPNG::Color.b(val) == 232
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 255, 241, 232, colorTolerance)
       # index 7 - White
       $the_converted_me << "7"
-    elsif ChunkyPNG::Color.r(val) == 255 && ChunkyPNG::Color.g(val) == 0 && ChunkyPNG::Color.b(val) == 77
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 255, 0, 77, colorTolerance)
       # index 8 - Red
       $the_converted_me << "8"
-    elsif ChunkyPNG::Color.r(val) == 255 && ChunkyPNG::Color.g(val) == 163 && ChunkyPNG::Color.b(val) == 0
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 255, 163, 0, colorTolerance)
       # index 9 - Orange
       $the_converted_me << "9"
-    elsif ChunkyPNG::Color.r(val) == 255 && ChunkyPNG::Color.g(val) == 236 && ChunkyPNG::Color.b(val) == 39
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 255, 236, 39, colorTolerance)
       # index 10 - Yellow
       $the_converted_me << "a"
-    elsif ChunkyPNG::Color.r(val) == 0 && ChunkyPNG::Color.g(val) == 228 && ChunkyPNG::Color.b(val) == 54
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 0, 228, 54, colorTolerance)
       # index 11 - Green
       $the_converted_me << "b"
-    elsif ChunkyPNG::Color.r(val) == 41 && ChunkyPNG::Color.g(val) == 173 && ChunkyPNG::Color.b(val) == 255
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 41, 173, 255, colorTolerance)
       # index 12 - Blue
       $the_converted_me << "c"
-    elsif ChunkyPNG::Color.r(val) == 131 && ChunkyPNG::Color.g(val) == 118 && ChunkyPNG::Color.b(val) == 156
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 131, 118, 156, colorTolerance)
       # index 13 - Indigo
       $the_converted_me << "d"
-    elsif ChunkyPNG::Color.r(val) == 255 && ChunkyPNG::Color.g(val) == 119 && ChunkyPNG::Color.b(val) == 168
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 255, 119, 168, colorTolerance)
       # index 14 - Pink
       $the_converted_me << "e"
-    elsif ChunkyPNG::Color.r(val) == 255 && ChunkyPNG::Color.g(val) == 204 && ChunkyPNG::Color.b(val) == 170
+    elsif is_color_near?(ChunkyPNG::Color.r(val), ChunkyPNG::Color.g(val), ChunkyPNG::Color.b(val), 255, 204, 170, colorTolerance)
       # index 15 - Peach
       $the_converted_me << "f"
     else
