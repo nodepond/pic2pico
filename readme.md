@@ -1,8 +1,7 @@
 # About
 
 pic2pico. A simple tool that converts pico-8 palette ready .png images to native p8-format
-(not sprites), that you can load images as code into pico-8.
-(c) MIT license 2016, m.wisniowski, http://www.nodepond.com
+(not sprites), that you can load images as code into pico-8. Made by http://www.nodepond.com
 
 # Install
 
