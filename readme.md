@@ -31,6 +31,10 @@ Append the generated code automatically to an existing.p8 file:
   ruby pic2pico.rb "$PATH_TO/my_img.png" >> program.p8
   ```
   
+# Like it?
+
+Here are some other people who like it and used in their Pico-8 productions. Read the [awesome-list.md](https://github.com/nodepond/pic2pico/blob/master/awesome-list.md)
+  
 # Licence
 
 MIT License
