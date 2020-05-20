@@ -1,4 +1,4 @@
-# The pic2pico awesone-list!
+# The pic2pico awesome-list!
 
 A slightly maintained list with productions, that used this tool.
 
